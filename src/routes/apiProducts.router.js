@@ -49,5 +49,4 @@ router.delete("/:id", passportAuthenticateApi("jwt"), (req, res, next) => {
 });
 router.delete("/:id", productController.deleteProduct);
 
-
 export default router;

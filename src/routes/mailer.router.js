@@ -19,10 +19,10 @@ router.get("/", async (req, res) => {
         });
         const result = await transport.sendMail({
             from:
-                "Sinteplast Construccion - Tienda <" +
+                "JaggerStore - Informatica <" +
                 config.MAIL_APP_USER +
                 ">",
-            to: "jmsocorro@gmail.com",
+            to: "kaiserjager10@gmail.com.com",
             subject: "Correo de prueba",
             html: `
             <div>

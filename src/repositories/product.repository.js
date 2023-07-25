@@ -8,7 +8,6 @@ export default class ProductRepository {
 
     init = async () => {
         this.productDao = await Persistance.getProductPers();
-        // console.log(this.productDao)
     };
 
     getProducts = async (limit = 10, page = 1, query = "{}", sort) => {

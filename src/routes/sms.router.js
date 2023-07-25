@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
         const result = await client.messages.create({
             body: "PRUEBA",
             from: config.TWILIO_PH,
-            to: "+ 54 1121743449",
+            to: "+ 54 2645851326",
         });
         res.send(result);
     } catch (error) {

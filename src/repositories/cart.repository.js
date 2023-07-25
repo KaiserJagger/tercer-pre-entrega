@@ -8,7 +8,6 @@ export default class CartRepository {
 
     init = async () => {
         this.cartDao = await Persistance.getCartPers();
-        // console.log(this.cartDao)
     };
 
     getCarts = async (limit = 10, page = 1, query = "{}", sort) => {
@@ -35,4 +34,7 @@ export default class CartRepository {
     deleteProduct = async ({ cid, pid }) => {
         return this.cartDao.deleteProduct({ cid, pid });
     };
+    closeCart = async(cid) =>{
+        return this.cartDao.closeCart(cid)
+    }
 }

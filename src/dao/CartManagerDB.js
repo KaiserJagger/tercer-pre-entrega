@@ -1,12 +1,28 @@
 import mongoose from "mongoose";
+import nodemailer from "nodemailer";
+import twilio from "twilio";
+
 import cartModel from "../models/cart.model.js";
 import productModel from "../models/product.model.js";
+import ticketModel from "../models/ticket.model.js";
 
-const productModelCart = mongoose.model(productModel.productCollection,productModel.productSchema)
+import config from "../config/config.js";
+
+const productModelCart = mongoose.model(
+    productModel.productCollection,
+    productModel.productSchema
+);
+const ticketModelCart = mongoose.model(
+    ticketModel.ticketCollection,
+    ticketModel.ticketSchema
+);
 
 export default class CartManagerDB {
     constructor() {
-        this.cartModel = mongoose.model(cartModel.cartCollection,cartModel.cartSchema);
+        this.cartModel = mongoose.model(
+            cartModel.cartCollection,
+            cartModel.cartSchema
+        );
     }
     getCarts = async (limit = 10, page = 1, query = "{}", sort) => {
         // verifico si query tiene un formato valido
@@ -73,13 +89,13 @@ export default class CartManagerDB {
             if (prodfound === null) {
                 const addedprod = await this.cartModel.updateOne(
                     { _id: cid },
-                    { $addToSet: { products: { product: pid } } },
+                    { $addToSet: { products: { product: pid } } }
                 );
                 return addedprod;
             } else {
                 const updatedprod = await this.cartModel.updateOne(
                     { _id: cid, "products.product": pid },
-                    { $inc: { "products.$.quantity": 1 } },
+                    { $inc: { "products.$.quantity": 1 } }
                 );
                 return updatedprod;
             }
@@ -102,7 +118,7 @@ export default class CartManagerDB {
             if (prodexists.length === products.products.length) {
                 const updatedProducts = await this.cartModel.updateOne(
                     { _id: cid },
-                    { $set: { products: products.products} },
+                    { $set: { products: products.products } }
                 );
                 return updatedProducts;
             } else {
@@ -141,7 +157,7 @@ export default class CartManagerDB {
             } else {
                 const updatedprod = await this.cartModel.updateOne(
                     { _id: cid, "products.product": pid },
-                    { $set: { "products.$.quantity": qty } },
+                    { $set: { "products.$.quantity": qty } }
                 );
                 return updatedprod;
             }
@@ -157,7 +173,7 @@ export default class CartManagerDB {
             }
             const deletedProducts = await this.cartModel.updateOne(
                 { _id: cid },
-                { $set: { products: [] } },
+                { $set: { products: [] } }
             );
             return deletedProducts;
         } catch (error) {
@@ -182,13 +198,108 @@ export default class CartManagerDB {
             } else {
                 const updatedprods = await this.cartModel.updateOne(
                     { _id: cid },
-                    { $pull: { products: { product: pid } } },
+                    { $pull: { products: { product: pid } } }
                 );
                 return updatedprods;
             }
         } catch (error) {
             return { error: 3, servererror: error };
         }
+    };
+    closeCart = async ({ cid, user }) => {
+        try {
+            const cartfound = await this.cartModel.findOne({ _id: cid });
+            if (cartfound === null) {
+                return { error: 2, errortxt: "el carro no existe" };
+            }
+            const purchaseproducts = [];
+            const outofstock = [];
+            const outofstock_id = [];
+            let totalpurchase = 0;
+            cartfound.products.forEach((product, index) => {
+                if (product.quantity <= product.product.stock) {
+                    product.product.stock =
+                    product.product.stock - product.quantity;
+                    purchaseproducts.push(product);
+                    totalpurchase += product.product.price * product.quantity;
+                } else {
+                    outofstock.push(product);
+                    outofstock_id.push(product.product._id);
+                }
+            });
+            if (purchaseproducts.length > 0) {
+                // Creo el ticket
+                const ticket = {
+                    code: user.email + "|" + cid,
+                    amount: totalpurchase,
+                    purchaser: user.email,
+                    purchased_products: purchaseproducts,
+                };
+                const newticket = new ticketModelCart(ticket);
+                newticket.save();
+                // Guardo el carro actualizado
+                const updatedCart = await this.cartModel.updateOne(
+                    { _id: cid },
+                    { $set: { products: outofstock } }
+                );
+                // Envio el ticket por mail
+                const transport = nodemailer.createTransport({
+                    service: "gmail",
+                    port: 587,
+                    auth: {
+                        user: config.MAIL_APP_USER,
+                        pass: config.MAIL_APP_PASS,
+                    },
+                });
+                const mailresult = await transport.sendMail({
+                    from:
+                        "   JaggerStore - Tienda <" +
+                        config.MAIL_APP_USER +
+                        ">",
+                    to: `${user.first_name} ${user.last_name}<${user.email}>`,
+                    subject: `Ticket de Compra [${newticket.code}]`,
+                    html: `
+                    <div>
+                        <h1>Compra finalizada</h1>
+                        <p>Usuario: ${user.first_name} ${user.last_name}</p>
+                        <p>Total Compra: $ ${newticket.amount}</p>
+                        <p>Fecha: $ ${newticket.purchase_datetime}</p>
+                    </div>
+                    `,
+                    attachments: [],
+                });
+                // Envio el ticket por sms
+                const client = twilio(config.TWILIO_SID, config.TWILIO_AT);
+                const smsresult = await client.messages.create({
+                    body: `
+JaggerStore Informatica
+--------------------------------------------
+Compra finalizada
+Usuario: ${user.first_name} ${user.last_name}
+Total Compra: $ ${newticket.amount}
+Fecha: $ ${newticket.purchase_datetime}
+--------------------------------------------
+`,
+                    from: config.TWILIO_PH,
+                    to: "+ 54 2645851326",
+                });
+                purchaseproducts.forEach((product, index) => {
+                    const updatedProduct = productModelCart.updateOne(
+                        { _id: product.product._id },
+                        { $set: { stock: product.product.stock } }
+                    );
+                });
+            }
+
+            return {
+                status:
+                    outofstock_id.length === 0 ? "Completed" : "Out of stock",
+                outofstock_id: outofstock_id,
+            };
+        } catch (error) {
+            return { error: 3, servererror: error };
+        }
+        return cid;
     };
 }
 
