@@ -5,7 +5,6 @@ const carro = new CartRepository();
 const getCarts = async (req, res) => {
     try {
         const result = await carro.getCarts();
-        console.log(result)
         if (result.error) {
             res.status(400).send(result);
         } else {
@@ -18,7 +17,6 @@ const getCarts = async (req, res) => {
 };
 const getCartById = async (req, res) => {
     const cid = req.params.cid;
-    console.log(carro)
     try {
         const result = await carro.getCartById(cid);
         if (result.error) {
@@ -119,6 +117,23 @@ const updateAllProducts = async (req, res) => {
         res.status(400).send(err);
     }
 };
+const closeCart = async (req, res) => {
+    const cart = {
+        cid: req.params.cid,
+        user: req.user,
+    };
+    try {
+        const result = await carro.closeCart(cart);
+        if (result.error) {
+            res.status(400).send(result);
+        } else {
+            res.status(201).send(result);
+        }
+    } catch (err) {
+        res.status(400).send(err);
+    }
+};
+
 /*
 
    getCarts = async (limit = 10, page = 1, query = "{}", sort) => {
@@ -279,4 +294,5 @@ export default {
     deleteProduct,
     updateProductQty,
     updateAllProducts,
+    closeCart,
 };
