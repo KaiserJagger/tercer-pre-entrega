@@ -1,0 +1,223 @@
+[
+    {
+      "id": 1,
+      "title": "Laptop Lenovo ThinkPad",
+      "description": "Potente laptop para tareas de trabajo y diseño.",
+      "price": 999.99,
+      "category": "Laptops",
+      "status": "Available",
+      "thumbnails": ["laptop_lenovo_thinkpad.jpg"],
+      "code": "LENTP001",
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "title": "Monitor Dell UltraSharp 27\"",
+      "description": "Monitor de alta resolución para una experiencia visual inmersiva.",
+      "price": 349.95,
+      "category": "Monitors",
+      "status": "Available",
+      "thumbnails": ["monitor_dell_ultrasharp_27.jpg"],
+      "code": "DELMD002",
+      "stock": 30
+    },
+    {
+      "id": 3,
+      "title": "Teclado Mecánico RGB",
+      "description": "Teclado con retroiluminación LED y teclas mecánicas para una escritura cómoda.",
+      "price": 79.99,
+      "category": "Keyboards",
+      "status": "Available",
+      "thumbnails": ["teclado_mecanico_rgb.jpg"],
+      "code": "KBMRGB003",
+      "stock": 100
+    },
+    {
+      "id": 4,
+      "title": "Mouse Gaming Logitech",
+      "description": "Mouse ergonómico con alta precisión para juegos y trabajo.",
+      "price": 49.95,
+      "category": "Mice",
+      "status": "Available",
+      "thumbnails": ["mouse_gaming_logitech.jpg"],
+      "code": "LOGMS004",
+      "stock": 75
+    },
+    {
+      "id": 5,
+      "title": "Auriculares Inalámbricos Sony",
+      "description": "Auriculares inalámbricos con cancelación de ruido para una experiencia de audio excepcional.",
+      "price": 149.99,
+      "category": "Headphones",
+      "status": "Available",
+      "thumbnails": ["auriculares_inalambricos_sony.jpg"],
+      "code": "SONHP005",
+      "stock": 40
+    },
+    {
+      "id": 6,
+      "title": "Disco Duro Externo WD",
+      "description": "Almacena tus archivos y realiza copias de seguridad con facilidad.",
+      "price": 119.95,
+      "category": "Storage",
+      "status": "Available",
+      "thumbnails": ["disco_duro_externo_wd.jpg"],
+      "code": "WDHD006",
+      "stock": 60
+    },
+    {
+      "id": 7,
+      "title": "Impresora Multifunción HP",
+      "description": "Impresora todo-en-uno para imprimir, escanear y copiar documentos.",
+      "price": 149.99,
+      "category": "Printers",
+      "status": "Available",
+      "thumbnails": ["impresora_multifuncion_hp.jpg"],
+      "code": "HPMP007",
+      "stock": 25
+    },
+    {
+      "id": 8,
+      "title": "Tableta Gráfica Wacom",
+      "description": "Tableta ideal para diseñadores y artistas digitales.",
+      "price": 199.95,
+      "category": "Tablets",
+      "status": "Available",
+      "thumbnails": ["tableta_grafica_wacom.jpg"],
+      "code": "WACTB008",
+      "stock": 35
+    },
+    {
+      "id": 9,
+      "title": "Router Inalámbrico ASUS",
+      "description": "Router de alta velocidad para una conexión a internet estable.",
+      "price": 79.99,
+      "category": "Networking",
+      "status": "Available",
+      "thumbnails": ["router_inalambrico_asus.jpg"],
+      "code": "ASUSNW009",
+      "stock": 50
+    },
+    {
+      "id": 10,
+      "title": "Altavoces Bluetooth JBL",
+      "description": "Altavoces portátiles con conectividad Bluetooth para disfrutar de tu música en cualquier lugar.",
+      "price": 89.95,
+      "category": "Speakers",
+      "status": "Available",
+      "thumbnails": ["altavoces_bluetooth_jbl.jpg"],
+      "code": "JBLSP010",
+      "stock": 80
+    },
+    {
+      "id": 11,
+      "title": "Webcam Logitech HD",
+      "description": "Cámara web de alta definición para videollamadas y streaming.",
+      "price": 49.95,
+      "category": "Webcams",
+      "status": "Available",
+      "thumbnails": ["webcam_logitech_hd.jpg"],
+      "code": "LOGWC011",
+      "stock": 45
+    },
+    {
+      "id": 12,
+      "title": "Memoria RAM Corsair DDR4",
+      "description": "Aumenta la velocidad y rendimiento de tu PC con esta memoria RAM.",
+      "price": 89.99,
+      "category": "Memory",
+      "status": "Available",
+      "thumbnails": ["memoria_ram_corsair_ddr4.jpg"],
+      "code": "CRSMR012",
+      "stock": 55
+    },
+    {
+      "id": 13,
+      "title": "Cargador Portátil Anker",
+      "description": "Batería externa para cargar tus dispositivos móviles sobre la marcha.",
+      "price": 39.99,
+      "category": "Accessories",
+      "status": "Available",
+      "thumbnails": ["cargador_portatil_anker.jpg"],
+      "code": "ANKAC013",
+      "stock": 70
+    },
+    {
+      "id": 14,
+      "title": "Tarjeta Gráfica NVIDIA GeForce",
+      "description": "Potente tarjeta gráfica para juegos y aplicaciones gráficas intensivas.",
+      "price": 329.95,
+      "category": "Graphics Cards",
+      "status": "Available",
+      "thumbnails": ["tarjeta_grafica_nvidia_geforce.jpg"],
+      "code": "NVGRC014",
+      "stock": 20
+    },
+    {
+      "id": 15,
+      "title": "SSD Samsung 1TB",
+      "description": "Unidad de estado sólido de alta capacidad para un almacenamiento rápido y confiable.",
+      "price": 169.99,
+      "category": "Storage",
+      "status": "Available",
+      "thumbnails": ["ssd_samsung_1tb.jpg"],
+      "code": "SMSSD015",
+      "stock": 15
+    },
+    {
+      "id": 16,
+      "title": "Impresora 3D Creality Ender 3",
+      "description": "Impresora 3D de nivel de entrada para tus proyectos de impresión.",
+      "price": 249.99,
+      "category": "3D Printers",
+      "status": "Available",
+      "thumbnails": ["impresora_3d_creality_ender_3.jpg"],
+      "code": "CR3DP016",
+      "stock": 10
+    },
+    {
+      "id": 17,
+      "title": "Caja PC NZXT H510",
+      "description": "Caja de ordenador con diseño elegante y excelente gestión de cables.",
+      "price": 89.95,
+      "category": "PC Cases",
+      "status": "Available",
+      "thumbnails": ["caja_pc_nzxt_h510.jpg"],
+      "code": "NZXCS017",
+      "stock": 25
+    },
+    {
+      "id": 18,
+      "title": "Router Mesh TP-Link Deco",
+      "description": "Sistema Wi-Fi Mesh para una cobertura inalámbrica completa en tu hogar.",
+      "price": 199.95,
+      "category": "Networking",
+      "status": "Available",
+      "thumbnails": ["router_mesh_tp-link_deco.jpg"],
+      "code": "TPLNKW018",
+      "stock": 30
+    },
+    {
+      "id": 19,
+      "title": "Laptop Apple MacBook Pro",
+      "description": "Potente laptop para usuarios creativos y profesionales.",
+      "price": 1799.99,
+      "category": "Laptops",
+      "status": "Available",
+      "thumbnails": ["laptop_apple_macbook_pro.jpg"],
+      "code": "APLTP019",
+      "stock": 20
+    },
+    {
+      "id": 20,
+      "title": "Gamepad Xbox Wireless Controller",
+      "description": "Controlador inalámbrico para juegos de PC y Xbox.",
+      "price": 59.99,
+      "category": "Gaming Accessories",
+      "status": "Available",
+      "thumbnails": ["gamepad_xbox_wireless_controller.jpg"],
+      "code": "XBWCG020",
+      "stock": 50
+    }
+  ]
+  

@@ -1,0 +1,34 @@
+<h3>Productos en tiempo real</h3>
+<form id="addproduct">
+    <h4>Agregar producto JSON</h4>
+    <textarea name="prodjson" id="prodjson" cols="20" rows="5"></textarea>
+    <button type="submit">Enviar</button>
+</form>
+
+<div id="realtimeproducts">
+    {{#each products}}
+        <div id="product{{this.id}}">
+            <h4>{{this.title}}</h4>
+            <img
+                src="{{this.thumbnails}}"
+                alt="foto producto"
+                width="100"
+            />
+            <p>{{this.description}}</p>
+            <p>Precio: ${{this.price}}</p>
+            <p>Categoría: {{this.category}}</p>
+            <p>Imagen: {{this.thumbnails}}</p>
+            <p>Status: {{this.status}}</p>
+            <p>Código: {{this.code}}</p>
+            <p>Stock: {{this.stock}}</p>
+            <input
+                type="button"
+                class="deleteproduct"
+                prodid="{{this.id}}"
+                value="Borrar este producto"
+            />
+        </div>
+    {{/each}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="../scripts/socketClient.js"></script>

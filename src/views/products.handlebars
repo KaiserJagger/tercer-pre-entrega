@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/css/productsStyles.css">
+<h2>Productos</h2>
+<div class="filters">
+    <div class="user">
+        <div class="info">Bienvenido {{user.first_name}} {{user.last_name}} ({{user.email}} / {{user.role}})</div>
+        <a href='/logout'>Cerrar sessión</a>
+    </div>
+    <div class="category">
+        <a href='products'>Todas las categorías</a>
+        <a href='?query={"category":"Laptops"}'>Laptop</a>
+        <a href='?query={"category":"Monitors"}'>Monitores</a>
+        <a href='?query={"category":"Keyboards"}'>Teclados</a>
+        <a href='?query={"category":"Mice"}'>Mouses</a>
+        <a href='?query={"category":"Headphones"}'>Auriculares</a>
+        <a href='?query={"category":"Storage"}'>Discos duros</a>
+        <a href='?query={"category":"Printers"}'>Impresoras</a>
+        <a href='?query={"category":"Tablets"}'>Tabletas graficas</a>
+        <a href='?query={"category":"Networking"}'>Routers</a>
+        <a href='?query={"category":"Webcams"}'>WebCam</a>
+    </div>
+    <div class="stock">
+        <a href='?query={"stock":{"$gt":"0"}}'>Productos con stock</a>
+        <a href='products'>Todos los productos</a>
+    </div>
+</div>
+<div class="products">
+{{#each productos.payload}}
+    <div class="product">
+        <h3>{{this.title}}</h3>
+        <img src="{{this.thumbnails}}"  alt="foto producto" width="100">
+        <h4>{{this.description}}</h4>
+        <p>Precio: ${{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <input class type="button" value="Agregar al carro">
+        <a href="../products/{{this.id}}" class="verproducto">Ver detalles</a>
+    </div>
+{{/each}}
+</div>
+<div class="paginado">
+        {{#if hasPrevPage }}
+            <a class="avtive" href='{{firstLink}}'>Primera</a>
+            <a class="active" href='{{prevLink}}'>Anterior</a>
+        {{else}}
+            <a class="disabled">Primera</a>
+            <a class="disabled">Anterior</a>
+        {{/if}}
+        {{#if hasNextPage }}
+            <a class="avtive" href='{{nextLink}}'>Siguiente</a>
+            <a class="active"href='{{lastLink}}'>Ultima</a>
+        {{else}}
+            <a class="disabled">Siguiente</a>
+            <a class="disabled">Ultima</a>
+        {{/if}}
+</div>
+<div class="limite">
+    <a href="?limit=5">ver 5</a>
+    <a href="?limit=10">ver 10</a>
+    <a href="?limit=20">ver 20</a>
+    <a href="?limit=50">ver 50</a>
+</div>
+<script src="../scripts/productsScript.js"></script>
