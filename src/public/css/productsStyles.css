@@ -1,0 +1,100 @@
+/* Estilos generales para la página de productos */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos para los filtros */
+.filters {
+  margin-bottom: 20px;
+}
+
+.user, .category, .stock {
+  margin-bottom: 10px;
+}
+
+.user a, .category a, .stock a {
+  margin-right: 10px;
+}
+
+/* Estilos para los productos */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product {
+  width: 30%;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product h3 {
+  margin-top: 0;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.product p {
+  margin-bottom: 5px;
+}
+
+.product input[type="button"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.product .verproducto {
+  display: block;
+  text-align: center;
+}
+
+/* Estilos para la paginación y el límite de productos */
+.paginado {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.limite {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.limite a {
+  margin-right: 10px;
+}
+
+/* Estilos para el enlace "Cerrar sesión" */
+.user a {
+  float: right;
+  color: #007bff;
+}
+
+.user a:hover {
+  text-decoration: underline;
+}

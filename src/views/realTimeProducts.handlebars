@@ -1,34 +1,47 @@
-<h3>Productos en tiempo real</h3>
-<form id="addproduct">
-    <h4>Agregar producto JSON</h4>
-    <textarea name="prodjson" id="prodjson" cols="20" rows="5"></textarea>
-    <button type="submit">Enviar</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="realtimeproducts">
-    {{#each products}}
-        <div id="product{{this.id}}">
-            <h4>{{this.title}}</h4>
-            <img
-                src="{{this.thumbnails}}"
-                alt="foto producto"
-                width="100"
-            />
-            <p>{{this.description}}</p>
-            <p>Precio: ${{this.price}}</p>
-            <p>Categoría: {{this.category}}</p>
-            <p>Imagen: {{this.thumbnails}}</p>
-            <p>Status: {{this.status}}</p>
-            <p>Código: {{this.code}}</p>
-            <p>Stock: {{this.stock}}</p>
-            <input
-                type="button"
-                class="deleteproduct"
-                prodid="{{this.id}}"
-                value="Borrar este producto"
-            />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos en tiempo real</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/productsStyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="text-center">Productos en tiempo real</h3>
+        <form id="addproduct" class="mb-3">
+            <h4>Agregar producto JSON</h4>
+            <textarea name="prodjson" id="prodjson" cols="20" rows="5" class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+        </form>
+
+        <div id="realtimeproducts">
+            {{#each products}}
+            <div id="product{{this.id}}" class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">{{this.title}}</h4>
+                    <img src="{{this.thumbnails}}" alt="foto producto" width="100" class="card-img-top">
+                    <p class="card-text">{{this.description}}</p>
+                    <p class="card-text">Precio: ${{this.price}}</p>
+                    <p class="card-text">Categoría: {{this.category}}</p>
+                    <p class="card-text">Imagen: {{this.thumbnails}}</p>
+                    <p class="card-text">Status: {{this.status}}</p>
+                    <p class="card-text">Código: {{this.code}}</p>
+                    <p class="card-text">Stock: {{this.stock}}</p>
+                    <button type="button" class="btn btn-danger deleteproduct" prodid="{{this.id}}">Borrar este producto</button>
+                </div>
+            </div>
+            {{/each}}
         </div>
-    {{/each}}
-</div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="../scripts/socketClient.js"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../scripts/socketClient.js"></script>
+</body>
+
+</html>

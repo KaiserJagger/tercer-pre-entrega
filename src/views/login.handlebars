@@ -1,25 +1,48 @@
-<link rel="stylesheet" href="/css/usersStyles.css" />
-<h2>Inicia Sessión</h2>
-<div class="user Login">
-    {{#if message }}
-    <div class="{{message.type}}">
-        <div class="title">{{message.title}}</div>
-        <div class="text">{{message.text}}</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesión</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/usersStyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center">Inicia Sesión</h2>
+        <div class="user Login">
+            {{#if message }}
+            <div class="alert {{message.type}}">
+                <div class="title">{{message.title}}</div>
+                <div class="text">{{message.text}}</div>
+            </div>
+            {{/if}}
+            <form method="post" action="/login">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input name="email" type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input name="password" type="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+            <div class="githublogin mt-3">
+                <a href="/githublogin" class="btn btn-dark">Inicia sesión con GITHUB</a>
+            </div>
+            <div class="register mt-3">
+                <p>¿No tienes una cuenta?</p>
+                <a href="/register" class="btn btn-link">Registrate haciendo clic aquí</a>
+            </div>
+        </div>
     </div>
-    {{/if}}
-    <form method="post" action="/login">
-        <label for="email">Correo electrónico</label>
-        <input name="email" type="email" required />
-        <label for="password">Contraseña</label>
-        <input name="password" type="password" required/>
-        <input type="submit" name="" id="" value="Enviar"/>
-    </form>
-    
-    <div class="githublogin">
-        <a href="/githublogin">Inicia sesión con GITHUB</a>
-    </div>
-    <div class="register">
-        <p>¿No tenés una cuenta?</p>
-        <a href="/register">Registrate haciendo click aca</a>
-    </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

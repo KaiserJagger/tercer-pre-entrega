@@ -1,61 +1,79 @@
-<link rel="stylesheet" href="/css/productsStyles.css">
-<h2>Productos</h2>
-<div class="filters">
-    <div class="user">
-        <div class="info">Bienvenido {{user.first_name}} {{user.last_name}} ({{user.email}} / {{user.role}})</div>
-        <a href='/logout'>Cerrar sessión</a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/productsStyles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">JaggerStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="nav-link">Bienvenido, {{user.first_name}} {{user.last_name}} /
+                        {{user.role}})</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Productos</h2>
+        <div class="filters row">
+            <!-- Si deseas agregar filtros o categorías, puedes hacerlo aquí -->
+        </div>
+        <div class="products row">
+            {{#each productos.payload}}
+            <div class="product col-md-4">
+                <h3>{{this.title}}</h3>
+                <img src="{{this.thumbnails}}" alt="foto producto" class="img-fluid">
+                <h4>{{this.description}}</h4>
+                <p>Precio: ${{this.price}}</p>
+                <p>Stock: {{this.stock}}</p>
+                <input class="btn btn-primary" type="button" value="Agregar al carro">
+                <a href="../products/{{this.id}}" class="btn btn-secondary verproducto">Ver detalles</a>
+            </div>
+            {{/each}}
+        </div>
+        <div class="paginado row">
+            {{#if hasPrevPage }}
+            <a class="btn btn-primary" href="{{firstLink}}">Primera</a>
+            <a class="btn btn-primary" href="{{prevLink}}">Anterior</a>
+            {{else}}
+            <a class="btn btn-primary disabled">Primera</a>
+            <a class="btn btn-primary disabled">Anterior</a>
+            {{/if}}
+            {{#if hasNextPage }}
+            <a class="btn btn-primary" href="{{nextLink}}">Siguiente</a>
+            <a class="btn btn-primary" href="{{lastLink}}">Ultima</a>
+            {{else}}
+            <a class="btn btn-primary disabled">Siguiente</a>
+            <a class="btn btn-primary disabled">Ultima</a>
+            {{/if}}
+        </div>
+        <div class="limite">
+            <a href="?limit=5">ver 5</a>
+            <a href="?limit=10">ver 10</a>
+            <a href="?limit=20">ver 20</a>
+            <a href="?limit=50">ver 50</a>
+        </div>
     </div>
-    <div class="category">
-        <a href='products'>Todas las categorías</a>
-        <a href='?query={"category":"Laptops"}'>Laptop</a>
-        <a href='?query={"category":"Monitors"}'>Monitores</a>
-        <a href='?query={"category":"Keyboards"}'>Teclados</a>
-        <a href='?query={"category":"Mice"}'>Mouses</a>
-        <a href='?query={"category":"Headphones"}'>Auriculares</a>
-        <a href='?query={"category":"Storage"}'>Discos duros</a>
-        <a href='?query={"category":"Printers"}'>Impresoras</a>
-        <a href='?query={"category":"Tablets"}'>Tabletas graficas</a>
-        <a href='?query={"category":"Networking"}'>Routers</a>
-        <a href='?query={"category":"Webcams"}'>WebCam</a>
-    </div>
-    <div class="stock">
-        <a href='?query={"stock":{"$gt":"0"}}'>Productos con stock</a>
-        <a href='products'>Todos los productos</a>
-    </div>
-</div>
-<div class="products">
-{{#each productos.payload}}
-    <div class="product">
-        <h3>{{this.title}}</h3>
-        <img src="{{this.thumbnails}}"  alt="foto producto" width="100">
-        <h4>{{this.description}}</h4>
-        <p>Precio: ${{this.price}}</p>
-        <p>Stock: {{this.stock}}</p>
-        <input class type="button" value="Agregar al carro">
-        <a href="../products/{{this.id}}" class="verproducto">Ver detalles</a>
-    </div>
-{{/each}}
-</div>
-<div class="paginado">
-        {{#if hasPrevPage }}
-            <a class="avtive" href='{{firstLink}}'>Primera</a>
-            <a class="active" href='{{prevLink}}'>Anterior</a>
-        {{else}}
-            <a class="disabled">Primera</a>
-            <a class="disabled">Anterior</a>
-        {{/if}}
-        {{#if hasNextPage }}
-            <a class="avtive" href='{{nextLink}}'>Siguiente</a>
-            <a class="active"href='{{lastLink}}'>Ultima</a>
-        {{else}}
-            <a class="disabled">Siguiente</a>
-            <a class="disabled">Ultima</a>
-        {{/if}}
-</div>
-<div class="limite">
-    <a href="?limit=5">ver 5</a>
-    <a href="?limit=10">ver 10</a>
-    <a href="?limit=20">ver 20</a>
-    <a href="?limit=50">ver 50</a>
-</div>
-<script src="../scripts/productsScript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../scripts/productsScript.js"></script>
+</body>
+
+</html>

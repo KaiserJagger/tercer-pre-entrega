@@ -1,0 +1,57 @@
+/* Estilos generales para la página de inicio de sesión y registro */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user.login,
+.user.register {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.alert .title {
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.invalid {
+  color: red;
+}
+
+.githublogin,
+.register,
+.login {
+  text-align: center;
+}
+
+.login p,
+.register p {
+  margin-bottom: 5px;
+}
