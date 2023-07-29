@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import passport from "passport";
+import { fakerES } from "@faker-js/faker"
 
 import config from "./config/config.js";
 import { fileURLToPath } from "url";
@@ -63,4 +64,23 @@ export const passportAuthenticateApi = (strategy) => {
             next();
         })(req, res, next);
     };
+};
+
+export const generateMockProducts = (qty) => {
+    const products = [];
+    for (let i = 0; i < qty; i++) {
+        products.push({
+            _id: fakerES.database.mongodbObjectId(),
+            title: fakerES.commerce.productName(),
+            description: fakerES.commerce.productDescription(),
+            category: fakerES.commerce.department(),
+            status: fakerES.datatype.boolean(0.8),
+            thumbnails: [fakerES.image.url()],
+            code: fakerES.string.alpha({ length: 8, casing: "upper" }),
+            stock: fakerES.number.int({ max: 100 }),
+            price: fakerES.commerce.price({ min: 1000, max: 10000, dec: 2 }),
+            id: fakerES.string.alpha({ length: 25, casing: "upper" }),
+        });
+    }
+    return products;
 };
